@@ -1,0 +1,6 @@
+id,name,email,role,signup_date,active
+101,Alice Johnson,alice@example.com,Admin,2026-01-15,true
+102,Bob Smith,bob@example.com,Developer,2026-02-01,true
+103,Charlie Brown,charlie@example.com,Analyst,2026-02-14,false
+104,Diana Prince,diana@example.com,Manager,2026-03-10,true
+105,Evan Wright,evan@example.com,Tester,2026-04-05,true

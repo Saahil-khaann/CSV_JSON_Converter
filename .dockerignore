@@ -1,0 +1,21 @@
+# Virtual environment and Python caches
+**/venv/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+
+# Node dependencies and build folders
+**/node_modules/
+**/dist/
+**/.git/
+**/.gitignore
+**/.dockerignore
+**/npm-debug.log*
+
+# SQLite Database and local storage
+**/*.db
+**/storage/*
+!**/storage/.gitkeep

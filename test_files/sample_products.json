@@ -1,0 +1,34 @@
+[
+  {
+    "sku": "PROD-001",
+    "name": "High-Performance Workstation",
+    "category": "Electronics",
+    "price": 1499.99,
+    "in_stock": true,
+    "rating": 4.8
+  },
+  {
+    "sku": "PROD-002",
+    "name": "Ergonomic Mesh Chair",
+    "category": "Furniture",
+    "price": 299.50,
+    "in_stock": true,
+    "rating": 4.6
+  },
+  {
+    "sku": "PROD-003",
+    "name": "Mechanical Gaming Keyboard",
+    "category": "Peripherals",
+    "price": 119.00,
+    "in_stock": false,
+    "rating": 4.9
+  },
+  {
+    "sku": "PROD-004",
+    "name": "4K Ultra-Wide Monitor",
+    "category": "Electronics",
+    "price": 649.99,
+    "in_stock": true,
+    "rating": 4.7
+  }
+]
