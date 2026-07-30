@@ -22,15 +22,9 @@ export function Navbar({ currentUser, onOpenUserModal, activeTab, setActiveTab }
           </div>
 
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h1 style={{ fontSize: '1.35rem', fontWeight: 800, background: 'linear-gradient(90deg, #ffffff 0%, #cbd5e1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.5px' }}>
-                File Converter
-              </h1>
-              <span className="badge badge-emerald" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>v1.0</span>
-            </div>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 500, margin: '2px 0 0' }}>
-              High-Performance CSV, JSON & Pickle Dataset Converter
-            </p>
+            <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', letterSpacing: '-0.5px' }}>
+              File Converter
+            </h1>
           </div>
         </div>
 

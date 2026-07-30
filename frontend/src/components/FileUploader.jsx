@@ -90,25 +90,22 @@ export function FileUploader({ file, setFile, onConvert, converting, currentUser
   return (
     <div className="glass-panel animate-fade-in" style={{ padding: '36px', marginBottom: '32px' }}>
 
-      {/* Animated Visual Hero Flow Graphic */}
-      <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-        
-        {/* Animated Format Flow Nodes */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '18px' }}>
+      {/* Animated Hero Flow Graphic */}
+      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
           <div className="float-motion" style={{
             background: 'rgba(245, 158, 11, 0.12)',
             border: '1px solid rgba(245, 158, 11, 0.35)',
             color: 'var(--accent-amber)',
             borderRadius: '12px',
             padding: '6px 14px',
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: '0.82rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            boxShadow: '0 4px 12px rgba(245, 158, 11, 0.15)'
+            gap: '6px'
           }}>
-            <FileCode size={14} /> .CSV
+            <FileCode size={14} /> .CSV / .JSON
           </div>
 
           <ArrowRight size={16} className="pulse" color="var(--primary)" />
@@ -117,16 +114,15 @@ export function FileUploader({ file, setFile, onConvert, converting, currentUser
             background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(6, 182, 212, 0.25))',
             border: '1px solid var(--primary)',
             color: '#fff',
-            borderRadius: '14px',
-            padding: '8px 18px',
-            fontWeight: 800,
-            fontSize: '0.88rem',
+            borderRadius: '12px',
+            padding: '6px 16px',
+            fontWeight: 700,
+            fontSize: '0.84rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            boxShadow: '0 0 20px rgba(99, 102, 241, 0.35)'
+            gap: '6px'
           }}>
-            <Cpu size={16} color="var(--accent-cyan)" className="pulse" />
+            <Cpu size={15} color="var(--accent-cyan)" className="pulse" />
             <span>Converter Engine</span>
           </div>
 
@@ -138,22 +134,21 @@ export function FileUploader({ file, setFile, onConvert, converting, currentUser
             color: 'var(--accent-emerald)',
             borderRadius: '12px',
             padding: '6px 14px',
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: '0.82rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)'
+            gap: '6px'
           }}>
-            <Sparkles size={14} /> .PKL / .JSON
+            <Sparkles size={14} /> .PKL / .JSON / .CSV
           </div>
         </div>
 
-        <h2 style={{ fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-0.5px', color: '#fff', marginBottom: '4px' }}>
-          Dataset & Pickle Format Converter
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, letterSpacing: '-0.5px', color: '#fff', marginBottom: '4px' }}>
+          File Converter
         </h2>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-          Convert dataset files between CSV, JSON, and compressed Pickle (.pkl) formats
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+          Upload CSV or JSON files to convert into Pickle, JSON, or CSV formats
         </p>
       </div>
 

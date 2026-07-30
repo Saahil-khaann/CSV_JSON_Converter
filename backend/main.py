@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.config import settings
+from config import settings
 from backend.infrastructure.database.connection import init_db
 from backend.presentation.middleware.telemetry import TelemetryMiddleware
 from backend.presentation.routers import user, convert, telemetry
@@ -33,14 +33,29 @@ app.include_router(user.router)
 app.include_router(convert.router)
 app.include_router(telemetry.router)
 
-@app.get("/")
-def root():
+import os
+from fastapi.staticfiles import StaticFiles
+
+@app.get("/api/health")
+def api_health():
     return {
         "status": "online",
         "app": settings.APP_NAME,
-        "docs": "/docs",
         "health": "OK"
     }
+
+# Mount static files for frontend React app if dist folder exists
+if os.path.exists("frontend/dist"):
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="static_frontend")
+else:
+    @app.get("/")
+    def root():
+        return {
+            "status": "online",
+            "app": settings.APP_NAME,
+            "docs": "/docs",
+            "health": "OK"
+        }
 
 if __name__ == "__main__":
     import uvicorn

@@ -1,15 +1,19 @@
 services:
-  backend:
+  app:
     build:
       context: .
-      dockerfile: backend/Dockerfile
-    container_name: csv_pickle_backend
+      dockerfile: Dockerfile
+    container_name: csv_pickle_app
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     volumes:
       - ./backend:/app/backend
+      - ./config.py:/app/config.py
+      - ./.env:/app/.env
       - ./storage:/app/storage
-      - backend_sqlite:/app
+      - app_sqlite:/app
     environment:
       - APP_NAME=CSV/JSON to Pickle Converter API
       - DEBUG=True
@@ -17,19 +21,5 @@ services:
       - STORAGE_DIR=./storage
     restart: always
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: csv_pickle_frontend
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    depends_on:
-      - backend
-    restart: always
-
 volumes:
-  backend_sqlite:
+  app_sqlite:

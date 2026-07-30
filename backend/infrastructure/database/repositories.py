@@ -151,6 +151,13 @@ class SqlConversionRepository(IConversionRepository):
 
         return matched_records
 
+    def update_record_stats(self, file_id: str, row_count: int, size_bytes: int) -> None:
+        model = self.db.query(ConversionRecordModel).filter(ConversionRecordModel.file_id == file_id).first()
+        if model:
+            model.row_count = row_count
+            model.pickle_size_bytes = size_bytes
+            self.db.commit()
+
 
 class SqlTelemetryRepository(ITelemetryRepository):
     def __init__(self, db: Session):

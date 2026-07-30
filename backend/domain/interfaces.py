@@ -53,6 +53,10 @@ class IConversionRepository(ABC):
     def search_records(self, query: Optional[str] = None, user_id: Optional[int] = None) -> List[ConversionRecord]:
         pass
 
+    @abstractmethod
+    def update_record_stats(self, file_id: str, row_count: int, size_bytes: int) -> None:
+        pass
+
 class ITelemetryRepository(ABC):
     @abstractmethod
     def save_log(self, log: TelemetryLog) -> TelemetryLog:

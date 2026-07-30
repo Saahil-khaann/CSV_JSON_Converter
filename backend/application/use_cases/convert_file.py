@@ -6,7 +6,7 @@ from backend.domain.entities import ConversionRecord
 from backend.domain.exceptions import UserNotFoundException
 from backend.infrastructure.converters.factory import converter_factory
 from backend.application.dtos import ConversionResponseDTO
-from backend.config import settings
+from config import settings
 
 class ConvertFileUseCase:
     def __init__(self, conversion_repo: IConversionRepository, user_repo: IUserRepository):

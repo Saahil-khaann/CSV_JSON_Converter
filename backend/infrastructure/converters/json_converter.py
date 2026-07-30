@@ -6,6 +6,8 @@ from typing import Tuple, Dict, Any, Optional
 from backend.domain.interfaces import IFileConverter
 from backend.domain.exceptions import ConversionFailedException
 
+from backend.application.utils.dataset_editor import clean_phone_and_identifier_columns
+
 class JsonToPickleConverter(IFileConverter):
     def supports(self, filename: str, content_type: Optional[str] = None) -> bool:
         ext = filename.lower().split('.')[-1]
@@ -35,6 +37,7 @@ class JsonToPickleConverter(IFileConverter):
                 if isinstance(val, list) and len(val) > 0 and isinstance(val[0], dict):
                     df = pd.json_normalize(val)
 
+            df = clean_phone_and_identifier_columns(df)
             initial_len = len(df)
 
             # Clean string columns by trimming hidden whitespace

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { apiClient } from '../services/api';
+import { apiClient, API_BASE_URL } from '../services/api';
 
 export function useConverter() {
   const [file, setFile] = useState(null);
@@ -54,7 +54,7 @@ export function useConverter() {
   };
 
   const downloadPickle = (fileId, filename, fmt = 'pkl') => {
-    const downloadUrl = `http://localhost:8000/api/download/${fileId}`;
+    const downloadUrl = `${API_BASE_URL}/api/download/${fileId}`;
     const link = document.createElement('a');
     link.href = downloadUrl;
     const baseName = filename ? filename.split('.')[0] : 'converted_file';
@@ -65,11 +65,75 @@ export function useConverter() {
     document.body.removeChild(link);
   };
 
+  const addRecordRow = async (fileId, newRow) => {
+    try {
+      setError(null);
+      const res = await apiClient.post(`/api/records/${fileId}`, newRow);
+      setResult(prev => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          row_count: res.data.row_count,
+          pickle_size_bytes: res.data.pickle_size_bytes,
+          preview_rows: res.data.rows,
+          raw_output_snippet: res.data.raw_output_snippet
+        };
+      });
+      return true;
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to add row.');
+      return false;
+    }
+  };
+
+  const updateRecordRow = async (fileId, rowIndex, updatedRow) => {
+    try {
+      setError(null);
+      const res = await apiClient.put(`/api/records/${fileId}/${rowIndex}`, updatedRow);
+      setResult(prev => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          row_count: res.data.row_count,
+          pickle_size_bytes: res.data.pickle_size_bytes,
+          preview_rows: res.data.rows,
+          raw_output_snippet: res.data.raw_output_snippet
+        };
+      });
+      return true;
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to update row.');
+      return false;
+    }
+  };
+
+  const deleteRecordRow = async (fileId, rowIndex) => {
+    try {
+      setError(null);
+      const res = await apiClient.delete(`/api/records/${fileId}/${rowIndex}`);
+      setResult(prev => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          row_count: res.data.row_count,
+          pickle_size_bytes: res.data.pickle_size_bytes,
+          preview_rows: res.data.rows,
+          raw_output_snippet: res.data.raw_output_snippet
+        };
+      });
+      return true;
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to delete row.');
+      return false;
+    }
+  };
+
   return {
     file,
     setFile,
     converting,
     result,
+    setResult,
     error,
     latestLatency,
     removeDuplicates,
@@ -78,6 +142,9 @@ export function useConverter() {
     setTargetFormat,
     convertFile,
     downloadPickle,
+    addRecordRow,
+    updateRecordRow,
+    deleteRecordRow,
     reset
   };
 }

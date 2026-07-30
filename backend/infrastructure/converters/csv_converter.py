@@ -5,6 +5,8 @@ from typing import Tuple, Dict, Any, Optional
 from backend.domain.interfaces import IFileConverter
 from backend.domain.exceptions import ConversionFailedException
 
+from backend.application.utils.dataset_editor import clean_phone_and_identifier_columns
+
 class CsvToPickleConverter(IFileConverter):
     def supports(self, filename: str, content_type: Optional[str] = None) -> bool:
         ext = filename.lower().split('.')[-1]
@@ -12,8 +14,9 @@ class CsvToPickleConverter(IFileConverter):
 
     def convert(self, file_content: bytes, filename: str, remove_duplicates: bool = True) -> Tuple[pd.DataFrame, bytes, Dict[str, Any]]:
         try:
-            # Parse CSV into Pandas DataFrame
-            df = pd.read_csv(io.BytesIO(file_content))
+            # Parse CSV into Pandas DataFrame preserving exact string values for phone numbers & IDs
+            df = pd.read_csv(io.BytesIO(file_content), dtype=str, keep_default_na=False)
+            df = clean_phone_and_identifier_columns(df)
             initial_len = len(df)
 
             # Clean string columns by trimming hidden whitespace

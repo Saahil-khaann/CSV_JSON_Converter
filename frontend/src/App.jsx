@@ -35,6 +35,9 @@ export function App() {
     setTargetFormat,
     convertFile,
     downloadPickle,
+    addRecordRow,
+    updateRecordRow,
+    deleteRecordRow,
     reset
   } = useConverter();
 
@@ -92,6 +95,9 @@ export function App() {
                 result={result}
                 latency={latestLatency}
                 onDownload={downloadPickle}
+                onAddRow={addRecordRow}
+                onUpdateRow={updateRecordRow}
+                onDeleteRow={deleteRecordRow}
               />
             )}
           </div>
