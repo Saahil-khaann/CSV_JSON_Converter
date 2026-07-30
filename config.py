@@ -16,4 +16,8 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
+if os.getenv("VERCEL") or os.getenv("VERCEL_ENV"):
+    settings.DATABASE_URL = "sqlite:////tmp/app.db"
+    settings.STORAGE_DIR = "/tmp/storage"
+
 os.makedirs(settings.STORAGE_DIR, exist_ok=True)
