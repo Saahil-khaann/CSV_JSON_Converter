@@ -19,3 +19,13 @@
 **/*.db
 **/storage/*
 !**/storage/.gitkeep
+
+# Environment & local config
+**/.env
+**/.env.*
+
+# IDE and OS files
+**/.vscode/
+**/.idea/
+**/.DS_Store
+
