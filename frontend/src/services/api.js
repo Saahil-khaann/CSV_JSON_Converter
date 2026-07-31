@@ -6,7 +6,7 @@ const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname === '[::1]'
 );
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (isLocalhost ? 'http://localhost:8000' : 'https://csv-json-converter-nems.vercel.app');
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (isLocalhost ? 'http://localhost:8000' : '');
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,

@@ -8,16 +8,18 @@ class Settings(BaseSettings):
     PORT: int = 8000
     DATABASE_URL: str = "sqlite:///./app.db"
     STORAGE_DIR: str = "./storage"
-    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173", "https://csv-json-converter-fgto.vercel.app", "https://csv-json-converter-nems.vercel.app", "*"]
+    CORS_ORIGINS: list[str] = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://csv-json-converter-fgto.vercel.app",
+        "https://csv-json-converter-nems.vercel.app",
+        "*"
+    ]
 
     class Config:
         env_file = ".env"
         extra = "ignore"
 
 settings = Settings()
-
-if os.getenv("VERCEL") or os.getenv("VERCEL_ENV"):
-    settings.DATABASE_URL = "sqlite:////tmp/app.db"
-    settings.STORAGE_DIR = "/tmp/storage"
 
 os.makedirs(settings.STORAGE_DIR, exist_ok=True)
