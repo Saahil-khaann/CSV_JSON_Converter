@@ -12,7 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code and config
 COPY config.py .
-COPY .env .
 COPY backend ./backend
 COPY storage ./storage
 
